@@ -41,3 +41,9 @@ class invoice_turn(models.Model):
         readonly=True,
         store=True,
         states={'draft': [('readonly', False)]})
+
+    @api.onchange('partner_id')
+    def _set_partner_activity(self):
+        for inv in self:
+            for act in inv.partner_id.partner_activities_ids:
+                inv.invoice_turn = act # El último giro, @TODO set default
