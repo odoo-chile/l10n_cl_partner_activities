@@ -40,6 +40,18 @@
             </field>
         </record>-->
 
+        
+        <record model="ir.ui.view" id="activity_search_view">
+             <field name="name">activity.search</field>
+             <field name="model">partner.activities</field>
+             <field name="arch" type="xml">
+                 <search>
+                      <field name="code"/>
+                      <field name="name"/>
+                 </search>
+             </field>
+         </record>
+
         <record id="view_partner_activities_form" model="ir.ui.view">
             <field name="name">partner.activities.form</field>
             <field name="model">partner.activities</field>
