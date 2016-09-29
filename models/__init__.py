@@ -30,3 +30,4 @@
 ##############################################################################
 from . import partner_activities
 from . import invoice_turn
+from . import sii_activity_description
