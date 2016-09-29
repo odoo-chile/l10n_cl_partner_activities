@@ -6,19 +6,23 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form" />
             <field name="arch" type="xml">
-                <xpath expr="/form/sheet/group/group/field[@name='partner_id']" position="after">
-                    <field name="invoice_turn" domain="[('partner_ids', '=', partner_id)]" options="{'no_create': True}"/>
-                </xpath>
+                <field name='partner_id' position="after">
+                    <field name="invoice_turn" domain="[('partner_id', '=', partner_id)]" invisible="True"/>
+                    <field name="activity_description"
+                            placeholder="Glosa descriptiva" options="{'no_edit': True}"/>
+                </field>
             </field>
         </record>
-        
+
         <record model="ir.ui.view" id="invoice_supplier_turn_form_view">
             <field name="name">account.invoice.supplier.turn.form</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_supplier_form"/>
             <field name="arch" type="xml">
                 <field name='partner_id' position="after">
-                    <field name="invoice_turn" domain="[('partner_ids', '=', partner_id)]" options="{'no_create': True}"/>
+                    <field name="invoice_turn" domain="[('partner_id', '=', partner_id)]"  invisible="True"/>
+                    <field name="activity_description"
+                            placeholder="Glosa descriptiva" options="{'no_edit': True}"/>
                 </field>
             </field>
         </record>
