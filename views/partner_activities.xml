@@ -7,10 +7,10 @@
             <field name="model">res.company</field>
             <field name="arch" type="xml">
                 <field name="vat" position="after">
-                    <field name="company_activities_ids"
-                        placeholder="Giros de la Compañía" widget="many2many_tags"
-                        options="{'no_create': True}"
-                        domain="[('parent_id', '>=', 1)"/>
+                    <field name="company_activities_ids" options="{'no_create': True}"
+                        placeholder="Actividades de la Compañía" widget="many2many_tags"
+                        domain="[('new_activity', '=', True)]"
+                        context="{'search_by_code': True}"/>
                 </field>
             </field>
         </record>
@@ -21,10 +21,10 @@
             <field name="model">res.partner</field>
             <field name="arch" type="xml">
                 <field name="title" position="after">
-                    <field name="partner_activities_ids" 
-                        placeholder="Giros del Partner" widget="many2many_tags" 
-                        options="{'no_create': True}"
-                        domain="[('parent_id', '>=', 1)]"/>
+                    <field name="partner_activities_ids" options="{'no_create': True}"
+                        placeholder="Actividades del Partner" widget="many2many_tags"
+                        domain="[('new_activity', '=', True)]"
+                        context="{'search_by_code': True}"/>
                 </field>
             </field>
         </record>
@@ -60,6 +60,18 @@
             </field>
         </record>
 
+        <record id="view_partner_activities_search" model="ir.ui.view">
+            <field name="name">partner.activities.search</field>
+            <field name="model">partner.activities</field>
+            <field name="arch" type="xml">
+                <search string="Search By">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <filter string="New Activities" domain="[('new_activity','=',True)]" help="New Activities Filter"/>
+                </search>
+            </field>
+        </record>
+
         <record id="view_partner_activities_tree" model="ir.ui.view">
             <field name="name">partner.activities.tree</field>
             <field name="model">partner.activities</field>
@@ -71,6 +83,7 @@
                     <field name="vat_affected"/>
                     <field name="tax_category"/>
                     <field name="internet_available"/>
+                    <field name="new_activity"/>
                 </tree>
             </field>
         </record>
@@ -80,7 +93,9 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">partner.activities</field>
             <field name="view_type">form</field>
-            <!-- <field name="view_mode">tree,form</field>-->
+            <field name="domain">[('new_activity', '=', True)]</field>
+            <!--<field name="context">{'group_by': ['grand_parent_id', 'parent_id']}</field>-->
+            <field name="view_mode">tree,form</field>
         </record>
 
         <menuitem name="SII Partner Activities" action="act_partner_activities" id="menu_action_act_partner_activities" parent="menu_sii_config"/>

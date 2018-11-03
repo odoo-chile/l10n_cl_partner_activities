@@ -12,7 +12,6 @@ You can check functionality in the following blog:
 http://blancomartin.cl/blog/novedades-odoo-1/post/nuevo-modulo-de-giros-odoo-localizacion-chilena-5
 
 
-
 This module provides SII's (Chilean Internal Taxes Service Entity) table with official economical activities codes.
 Allows you to assign more than one activity to partners, and choose one of them when issuing an invoice.
 
@@ -46,4 +45,3 @@ Se proveerá una lista de dependencias aquí
 <img alt="Logo BMYA" src="http://crm.blancomartin.cl/index.php?entryPoint=image&name=c82ab43f-e8dd-b2fa-25ff-56017f69d116" />
 </p>
 **Blanco Martin & Asociados EIRL** - http://blancomartin.cl
-
